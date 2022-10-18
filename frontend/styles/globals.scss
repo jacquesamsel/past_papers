@@ -1,0 +1,38 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --fg: #0F1115;
+  --fg-05: rgba(15,17,21, 0.07);
+  --bg: white;
+  --green: #29C229;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: #0F1115;
+  }
+  :root {
+    --fg: white;
+    --fg-05: rgba(255, 255, 255, 0.05);
+    --bg: #0F1115;
+    --green: #6CE06C;
+  }
+}

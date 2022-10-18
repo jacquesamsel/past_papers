@@ -1,0 +1,140 @@
+.main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 128px 64px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  @media screen and (max-width: 900px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  h1 {
+    font-size: 4em;
+    font-weight: 600;
+    margin: 0;
+  }
+  .goodLuck {
+    font-size: 28px;
+  }
+  nav {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    * {
+      flex-grow: 1;
+    }
+  }
+
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 4px 0;
+    span {
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.main input {
+  font-weight: bold;
+}
+
+.main input, .main select {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 8px 40px 8px 12px;
+  border: 3px solid var(--fg);
+  border-radius: 12px;
+  background: var(--fg);
+  color: var(--bg);
+  font-family: inherit;
+  font-size: 16px;
+  transition: all 250ms ease;
+  outline: none;
+}
+
+.titleGreen {
+  color: var(--green);
+}
+
+.dropdown {
+  position: relative;
+  select {
+    cursor: pointer;
+    &:invalid {
+      background: transparent;
+      border: 3px solid var(--fg);
+      color: var(--fg);
+    }
+
+    option {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    option[value = ""][disabled] {
+      display: none;
+    }
+  }
+  .chevronDown {
+    position: absolute;
+    right: 12px;
+    top: calc(50% - 3px);
+    width: 10px;
+    height: 6px;
+    stroke-width: 2px;
+    stroke: #9098a9;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+  }
+}
+
+.paperGroups {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.paperGroup {
+  background: var(--fg-05);
+  padding: 32px 48px;
+  border-radius: 16px;
+  h2 {
+    font-size: 32px;
+    color: var(--green);
+    margin: 0;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    list-style: none;
+    li {
+      width: max-content;
+      font-size: 24px;
+      :hover {
+        color: var(--green) !important;
+      }
+      border-bottom: 2px solid currentColor;
+      svg {
+        margin-left: 4px;
+        height: 18px;
+      }
+    }
+  }
+}
