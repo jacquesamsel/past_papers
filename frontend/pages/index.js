@@ -93,7 +93,7 @@ const PaperGroup = ({ curriculum, subject, year, papers, language }) => {
     <h2>{curriculum} {subject} {year} ({getLanguageText(language)})</h2>
     <ul>
       {
-        papers.map(paper => <li key={paper.path}><a href={`https://raw.githubusercontent.com/Dextication/past_papers/master/${paper.path}`} target="_blank" rel="noreferrer">{paper.paper_name}</a><ArrowRight color="var(--fg)"/></li>)
+        papers.map(paper => <li key={paper.path}><a href={`https://raw.githubusercontent.com/Dextication/past_papers/master/${paper.path}`} target="_blank" rel="noreferrer">{paper.paper_name}<ArrowRight color="var(--fg)"/></a></li>)
       }
     </ul>
   </div>

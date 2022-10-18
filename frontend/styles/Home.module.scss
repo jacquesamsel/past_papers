@@ -121,17 +121,26 @@
   ul {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
     padding: 0;
     list-style: none;
     li {
       width: max-content;
+      max-width: 100%;
       font-size: 24px;
+      line-height: 1.5em;
+      @media screen and (max-width: 900px) {
+        font-size: 18px;
+      }
       :hover {
         color: var(--green) !important;
       }
-      border-bottom: 2px solid currentColor;
+      text-decoration: underline;
+      text-underline-offset: 6px;
       svg {
+        @media screen and (max-width: 900px) {
+          display: none;
+        }
         margin-left: 4px;
         height: 18px;
       }
