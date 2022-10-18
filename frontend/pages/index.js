@@ -4,11 +4,7 @@ import classNames from 'classnames'
 import manifest from "../public/manifest.json"
 import { useState, useEffect } from 'react' 
 import lunr from 'lunr'
-
-const unique_id = (prefix) => {
-  const rand_num = Math.random()*Number.MAX_SAFE_INTEGER;
-  return prefix + "-" + rand_num;
-}
+import Head from 'next/head'
 
 const Dropdown = ({ items, placeholder, className, onChange }) => {
   return <label className={classNames(styles.dropdown, className)} htmlFor="dropdown">
@@ -78,8 +74,6 @@ const manifestTextIndex = lunr(function() {
   this.field('subject');
   this.field('language')
   groupPapers(manifest).forEach(function(val, key) {
-    // console.log("key", key)
-    // console.log(val)
     this.add({
       key,
       ...val[0],
@@ -99,7 +93,7 @@ const PaperGroup = ({ curriculum, subject, year, papers, language }) => {
     <h2>{curriculum} {subject} {year} ({getLanguageText(language)})</h2>
     <ul>
       {
-        papers.map(paper => <li key={paper.path}><a href={`https://raw.githubusercontent.com/Dextication/past_papers/master/${paper.path}`} target="_blank" >{paper.paper_name}</a><ArrowRight color="var(--fg)"/></li>)
+        papers.map(paper => <li key={paper.path}><a href={`https://raw.githubusercontent.com/Dextication/past_papers/master/${paper.path}`} target="_blank" rel="noreferrer">{paper.paper_name}</a><ArrowRight color="var(--fg)"/></li>)
       }
     </ul>
   </div>
@@ -117,7 +111,7 @@ const getLanguageText = (code) => {
 }
 
 
-export default () => {
+const Page = () => {
   useEffect(() => {
     window.lunr = lunr;
     document.manifestTextIndex = manifestTextIndex
@@ -163,6 +157,10 @@ export default () => {
   groupsToDisplay = filterGroups(groupsToDisplay, curriculum, subject, null, language).slice(0, 100);
   return (
     <div className={styles.main}>
+      <Head>
+        <title>Past Papers (South Africa)</title>
+        <meta name="description" content="Prepare for your IEB or NSC (CAPS) exams with these past exam papers."/>
+      </Head>
       <header>
         <span>Made with <img src="heart.svg" fill="#D24949"/> by <a href="https://jacquesamsel.com/">Jacques</a></span>
       </header>
@@ -190,3 +188,4 @@ export default () => {
     </div>
   )
 }
+export default Page;
