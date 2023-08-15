@@ -159,7 +159,7 @@ const Page = () => {
     <div className={styles.main}>
       <Head>
         <title>Past Papers (South Africa)</title>
-        <meta name="description" content="Prepare for your IEB or NSC (CAPS) exams with these past exam papers."/>
+        <meta name="description" content="Prepare for your IEB or exams with these past exam papers."/>
       </Head>
       <header>
         <span>Made with <img src="heart.svg" fill="#D24949"/> by <a href="https://jacquesamsel.com/">Jacques</a></span>
@@ -167,7 +167,7 @@ const Page = () => {
       <div>
         <h1>
           <span className={styles.titleGreen}>South African</span><br/>
-          IEB & NSC Past Papers
+          IEB Past Papers
         </h1>
         <span className={styles.goodLuck}>Good luck for your exams! -Jacques</span>
       </div>
