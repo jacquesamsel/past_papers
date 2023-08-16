@@ -153,8 +153,14 @@ const Page = () => {
   for (const result of manifestTextIndex.search(searchTerm.trim())) {
     groupsToDisplay.push(groupedPapers.get(result.ref))
   }
+  groupsToDisplay = filterGroups(groupsToDisplay, curriculum, subject, null, language)
+  if (curriculum == null && subject == null && language == null && searchTerm == "") {
+    groupsToDisplay = groupsToDisplay.slice(0, 10);
+  } else {
+    groupsToDisplay = groupsToDisplay.slice(0, 100);
+  }
 
-  groupsToDisplay = filterGroups(groupsToDisplay, curriculum, subject, null, language).slice(0, 100);
+  
   return (
     <div className={styles.main}>
       <Head>
