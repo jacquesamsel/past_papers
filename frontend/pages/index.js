@@ -168,7 +168,7 @@ const Page = () => {
         <meta name="description" content="Prepare for your IEB or exams with these past exam papers."/>
       </Head>
       <header>
-        <span>Made with <img src="heart.svg" fill="#D24949"/> by <a href="https://jacquesamsel.com/">Jacques</a></span>
+        <span>Made with <img src="heart.svg" alt="love" fill="#D24949"/> by <a href="https://jacquesamsel.com/">jacquesamsel.com</a></span>
       </header>
       <div>
         <h1>
