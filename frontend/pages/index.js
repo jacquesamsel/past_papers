@@ -2,8 +2,7 @@ import styles from '../styles/Home.module.scss'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import manifest from "../public/manifest.json"
-import { useState, useEffect } from 'react' 
-import lunr from 'lunr'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Image from "next/image"
 import HeartImage from "../public/heart.svg"
@@ -61,26 +60,12 @@ const groupPapers = (items) => {
     if (map.get(key) === undefined) {
       map.set(key, [])
     }
-    map.get(key).push(paper);
+    map.get(key).push(paper)
   }
   return map;
 }
 
 const groupedPapers = groupPapers(manifest);
-
-const manifestTextIndex = lunr(function() {
-  this.ref('key');
-  this.field('curriculum');
-  this.field('year');
-  this.field('subject');
-  this.field('language')
-  groupPapers(manifest).forEach(function(val, key) {
-    this.add({
-      key,
-      ...val[0],
-    })
-  }, this)
-})
 
 const ArrowRight = ({color}) => {
   return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,14 +96,30 @@ const getLanguageText = (code) => {
   }
 }
 
+const search = (term) => {
+  if (term == "") {
+    return groupedPapers
+  }
+  let words = term.trim().toLowerCase().split(" ");
+  let results = new Map();
+  // Count how many words in the search term are in the key, and add store (key, # of words that match) in results
+  for (let word of words) {
+    let keys = Array.from(groupedPapers.keys()).filter(key => key.toLowerCase().includes(word))
+    for (let key of keys) {
+      if (results.has(key)) {
+        results.set(key, results.get(key)+1)
+      } else {
+        results.set(key, 1)
+      }
+    }
+  }
+
+  let res = Array.from(results.entries()).sort((a, b) => a[1] > b[1]).map(e => e[0])
+
+  return res.map(entry => groupedPapers.get(entry))
+}
 
 const Page = () => {
-  useEffect(() => {
-    window.lunr = lunr;
-    document.manifestTextIndex = manifestTextIndex
-    return () => {}
-  }) 
-
   let [curriculum, setCurriculum] = useState(null);
   let [subject, setSubject] = useState(null);
   let [language, setLanguage] = useState(null);
@@ -150,10 +151,11 @@ const Page = () => {
       }
     });
 
-  let groupsToDisplay = [];
-  for (const result of manifestTextIndex.search(searchTerm.trim())) {
-    groupsToDisplay.push(groupedPapers.get(result.ref))
-  }
+  let searchResult = search(searchTerm);
+
+  let groupsToDisplay = Array.from(searchResult.values())
+    
+  groupsToDisplay = groupsToDisplay.sort((groupA, groupB) => groupB[0].year - groupA[0].year)
   groupsToDisplay = filterGroups(groupsToDisplay, curriculum, subject, null, language)
   if (curriculum == null && subject == null && language == null && searchTerm == "") {
     groupsToDisplay = groupsToDisplay.slice(0, 10);
