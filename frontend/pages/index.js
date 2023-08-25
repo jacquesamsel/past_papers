@@ -12,8 +12,7 @@ const Dropdown = ({ items, placeholder, className, onChange }) => {
   return <label className={classNames(styles.dropdown, className)} htmlFor="dropdown">
     <select 
       placeholder={placeholder} 
-      required={true} 
-      id="dropdown" 
+      required={true}
       onChange={onChange} 
       defaultValue="">
       <option value="" disabled={true}>{placeholder}</option>
