@@ -5,6 +5,8 @@ import manifest from "../public/manifest.json"
 import { useState, useEffect } from 'react' 
 import lunr from 'lunr'
 import Head from 'next/head'
+import Image from "next/image"
+import HeartImage from "../public/heart.svg"
 
 const Dropdown = ({ items, placeholder, className, onChange }) => {
   return <label className={classNames(styles.dropdown, className)} htmlFor="dropdown">
@@ -165,10 +167,10 @@ const Page = () => {
     <div className={styles.main}>
       <Head>
         <title>Past Papers (South Africa)</title>
-        <meta name="description" content="Prepare for your IEB or exams with these past exam papers."/>
+        <meta name="description" content="Prepare for your IEB exams with these exam past papers."/>
       </Head>
       <header>
-        <span>Made with <img src="heart.svg" alt="love" fill="#D24949"/> by <a href="https://jacquesamsel.com/">jacquesamsel.com</a></span>
+        <span>Made with <Image src={HeartImage} alt="love" height={25} width={25}/> by <a href="https://jacquesamsel.com/">jacquesamsel.com</a></span>
       </header>
       <div>
         <h1>
