@@ -2,17 +2,20 @@ import styles from '../styles/Home.module.scss'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import manifest from "../public/manifest.json"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useId } from 'react'
 import Head from 'next/head'
 import Image from "next/image"
 import HeartImage from "../public/heart.svg"
 
 const Dropdown = ({ items, placeholder, className, onChange }) => {
-  return <label className={classNames(styles.dropdown, className)} htmlFor="dropdown">
+  let id = useId()
+
+  return <label className={classNames(styles.dropdown, className)} htmlFor={id}>
     <select 
       placeholder={placeholder} 
       required={true}
-      onChange={onChange} 
+      onChange={onChange}
+      id={id} 
       defaultValue="">
       <option value="" disabled={true}>{placeholder}</option>
       {
