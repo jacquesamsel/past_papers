@@ -16,10 +16,11 @@ a {
 
 :root {
   --fg: #0F1115;
-  --fg-05: rgba(15,17,21, 0.07);
+  --fg-05: #27b82718;
   --bg: white;
   --green: #27b827;
 }
+
 
 @media (prefers-color-scheme: dark) {
   html {
