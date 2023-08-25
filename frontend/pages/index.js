@@ -10,7 +10,8 @@ import HeartImage from "../public/heart.svg"
 const Dropdown = ({ items, placeholder, className, onChange }) => {
   let id = useId()
 
-  return <label className={classNames(styles.dropdown, className)} htmlFor={id}>
+  return <div className={classNames(styles.dropdown, className)} htmlFor={id}>
+    <label htmlFor={id} style={{display: "none"}}>{placeholder}</label>
     <select 
       placeholder={placeholder} 
       required={true}
@@ -25,7 +26,7 @@ const Dropdown = ({ items, placeholder, className, onChange }) => {
     <svg className={styles.chevronDown}>
       <polyline points="1 1 5 5 9 1"></polyline>
     </svg>
-  </label>
+  </div>
 }
 
 Dropdown.propTypes = {
