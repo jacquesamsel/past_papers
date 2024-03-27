@@ -184,7 +184,7 @@ const Page = () => {
           IEB Past Papers
         </h1>
         <span className={styles.goodLuck}>Good luck for your exams! -Jacques</span>
-        <span style={{color: 'transparent', height: 0, width: 0}}>Papers from {Array.from(new Set(manifest.map(item => item.subject))).join(", ")}</span>
+        <span className={styles.hiddenSeo}>Papers from {Array.from(new Set(manifest.map(item => item.subject))).join(", ")}</span>
       </div>
       <input type="text" placeholder="Search..." onChange={e => setSearchTerm(e.target.value)}></input>
       <nav>
