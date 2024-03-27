@@ -167,6 +167,7 @@ const Page = () => {
     groupsToDisplay = groupsToDisplay.slice(0, 100);
   }
 
+  let unsearched = curriculum == null && subject == null && language == null && searchTerm == "";
   
   return (
     <div className={styles.main}>
@@ -183,6 +184,7 @@ const Page = () => {
           IEB Past Papers
         </h1>
         <span className={styles.goodLuck}>Good luck for your exams! -Jacques</span>
+        <span style={{color: 'transparent', height: 0, width: 0}}>Papers from {Array.from(new Set(manifest.map(item => item.subject))).join(", ")}</span>
       </div>
       <input type="text" placeholder="Search..." onChange={e => setSearchTerm(e.target.value)}></input>
       <nav>
@@ -192,7 +194,10 @@ const Page = () => {
       </nav>
       <div className={styles.paperGroups}>
         {
-          groupsToDisplay.map(val => {
+          unsearched &&<div className={styles.unsearched}><span>Search for your paper using the tools above :)</span></div>
+        }
+        {
+          !unsearched && groupsToDisplay.map(val => {
             let { language, curriculum, subject, year } = val[0];
             return <PaperGroup language={language} curriculum={curriculum.toUpperCase()} subject={subject} year={year} papers={val} key={toPaperGroupKey(val[0])} />
           })
