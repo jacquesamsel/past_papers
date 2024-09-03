@@ -2,7 +2,7 @@ import styles from '../styles/Home.module.scss'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import manifest from "../public/manifest.json"
-import { useState, useEffect, useId } from 'react'
+import { useState, useId } from 'react'
 import Head from 'next/head'
 import Image from "next/image"
 import HeartImage from "../public/heart.svg"
@@ -11,7 +11,7 @@ const Dropdown = ({ items, placeholder, className, onChange }) => {
   let id = useId()
 
   return <div className={classNames(styles.dropdown, className)} htmlFor={id}>
-    <label htmlFor={id} style={{display: "none"}}>{placeholder}</label>
+    <label htmlFor={id} style={{position: 'absolute', opacity: 0}}>{placeholder}</label>
     <select 
       placeholder={placeholder} 
       required={true}
